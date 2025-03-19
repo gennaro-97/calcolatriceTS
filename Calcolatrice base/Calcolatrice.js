@@ -22,7 +22,30 @@ function calcola(x, y, operazione) {
             return 0;
     }
 }
-var x = readlineSync.questionInt("Inserisci il primo numero: ");
-var y = readlineSync.questionInt("Inserisci il secondo numero: ");
-var operazione = readlineSync.question("Inserisci l'operazione: ");
-console.log(calcola(x, y, operazione));
+function verificaStringa() {
+    while (true) {
+        var stringa = readlineSync.question("Vuoi continuare? (si/no): ");
+        if (stringa === "si") {
+            return true;
+        }
+        else if (stringa === "no") {
+            return false;
+        }
+        else {
+            console.log("Inserisci si o no");
+            continue;
+        }
+    }
+}
+while (true) {
+    console.log("CALCOLATRICE");
+    var x = readlineSync.questionInt("Inserisci il primo numero: ");
+    var y = readlineSync.questionInt("Inserisci il secondo numero: ");
+    var operazione = readlineSync.question("Inserisci l'operazione(+, -, *, /): ");
+    var risultato = calcola(x, y, operazione);
+    console.log("Il risultato di ".concat(x, " ").concat(operazione, " ").concat(y, " \u00E8 ").concat(risultato));
+    if (!verificaStringa()) {
+        console.log("Arrivederci!");
+        break;
+    }
+}
